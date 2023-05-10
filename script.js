@@ -29,6 +29,7 @@ checkButton.addEventListener('click', () => {
     } else if(cashGiven == billAmount){
         errorMessage.innerText = "No amount need to return"
     }else {
+        Notes.style.display = 'block';
         const valueDifference = cashGivenInput.value - billAmountInput.value;
         calculateNotes(valueDifference)
     }
@@ -38,7 +39,7 @@ checkButton.addEventListener('click', () => {
 
 
 function calculateNotes(valueDifference) {
-    Notes.style.display = 'block';
+    
     for (let i = 0; i < availableNotes.length; i++) {
         const notes = Math.trunc(valueDifference / availableNotes[i]);
         notesTableCells[i].innerText = notes;
@@ -50,6 +51,7 @@ function calculateNotes(valueDifference) {
 billAmountInput.addEventListener('input', () => {
     if (!billAmountInput.value || isNaN(parseFloat(billAmountInput.value))) {
         cashGivenContainer.style.display = 'none';
+        Notes.style.display = 'none';
     } else {
         cashGivenContainer.style.display = 'block';
     }
